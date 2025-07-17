@@ -1,24 +1,28 @@
 import pgzrun
-import turtle
+import random
 
-WIDTH = 1400
-HEIGHT = 700
-def l():
-    g.left(90)
-    bg.update()
-def r():
-    g.right(90)
-    bg.update()
-def f():
-    g.forward(10)
-    bg.update()
-bg = turtle.Screen()
-bg.tracer(0)
-bg.bgcolor("dark blue")
-bg.listen()
-g = turtle.Turtle()
-g.shape("circle")
-g.color("white")
-bg.update()
+WIDTH = 1500
+HEIGHT = 800
+
+score = 0
+
+a = Actor("kaka_resized")
+a.pos = random.randint(70,1430),random.randint(50,750)
+
+def draw():
+    screen.fill("dark blue")
+    a.draw()
+    screen.draw.text(f"SCORE:{score}",center = (100,100),fontsize = (20),color = ("black"))
+
+def update():
+    pass
+
+def on_mouse_down(pos):
+    global score
+    if a.collidepoint(pos):
+        a.pos = random.randint(70,1430),random.randint(50,750)
+        score += 1
+    else:
+        score -= 1
 
 pgzrun.go()
