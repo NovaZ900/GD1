@@ -21,8 +21,11 @@ def on_mouse_down(pos):
     global score
     if a.collidepoint(pos):
         a.pos = random.randint(70,1430),random.randint(50,750)
+        screen.draw.text("Good shot!",center = (pos),fontsize = (200),color = ("purple"))
         score += 1
     else:
+        screen.draw.text("Miss",center = (pos),fontsize = (200),color = ("black"))
         score -= 1
+
 
 pgzrun.go()
