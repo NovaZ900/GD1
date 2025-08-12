@@ -3,7 +3,14 @@ import random
 WIDTH = 700
 HEIGHT = 700
 
+b = Actor("spike")
+f = Actor("balloon")
+b.y = 700
+
+f.pos = random.randint(0,650), -10
+
 def draw():
+    screen.blit("void",(0,0))
     b.draw()
     f.draw()
 def update():
@@ -16,10 +23,5 @@ def update():
         f.pos = random.randint(0,650), -10
     if f.y > 700:
         f.pos = random.randint(0,650), -10
-
-b = Actor("bee")
-f = Actor("flower (1)")
-
-f.pos = random.randint(0,650), -10
 
 pgzrun.go()

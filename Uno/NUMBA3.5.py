@@ -6,14 +6,18 @@ HEIGHT = 700
 
 score = 0
 
-s = Actor("satlite")
-s.pos = random.randint(0,650),random.randint(0,650)
+ss = []
+for i in range(8):
+    s = Actor("satlite")
+    s.pos = random.randint(10,650),random.randint(10,650)
+    ss.append(s)
 
 cord = 0,0
 
 def draw():
     screen.blit("space",(0,0))
-    s.draw()
+    for i in range(8):
+        ss[i].draw()
     screen.draw.text(f"{score}/8",center = (100,100),fontsize = (20),color = ("white"))
 
 def update():
