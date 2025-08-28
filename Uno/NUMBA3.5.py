@@ -1,10 +1,13 @@
 import pgzrun
 import random
+import time
 
 WIDTH = 700
 HEIGHT = 700
 
 score = 0
+tim = time.time()
+totl = 0
 
 ss = []
 sc = []
@@ -26,6 +29,13 @@ def draw():
     for i in range(len(sc)):
         screen.draw.line(sc[i],ec[i],color = "white")
     screen.draw.text(f"{score}/7",center = (100,100),fontsize = (20),color = ("white"))
+    
+    if score == 7:
+        screen.blit("void",(0,0))
+        screen.draw.text(f"YOU WIN",center = (350,350),fontsize = (150),color = ("white"))
+    totl = time.time() - tim
+    screen.draw.text(f"{round(totl,2)}",center = (100,50))
+
 
 
 
@@ -39,8 +49,10 @@ def on_mouse_down(pos):
     global sc
     global ec
     cord = pos
+    c = False
     for i in range(8):
         if ss[i].collidepoint(pos):
+            c = True
             if i == sn:
                 sc.append(ss[i-1].pos)
                 ec.append(ss[i].pos)
@@ -51,10 +63,13 @@ def on_mouse_down(pos):
                 sc = []
                 ec = []
                 sn = 1
-        if score == 7:
-            exit()
+    if not c:
+        sc = []
+        ec = []
+        sn = 1
 
-
-
+def end():
+    print("")
+clock.schedule(end,2)
 
 pgzrun.go()
