@@ -26,7 +26,6 @@ def setup():
 
 def anit():
     for i in range(len(sl)):
-        print(i)
         if i // 2 == 0:
             a = animate(sl[i] , duration = 5, x = 500)
         elif i // 2 != 0:
@@ -43,6 +42,7 @@ def draw():
         i.draw()
     if k == True:
         b.draw()
+    s.draw()
 
 def update():
     global k
