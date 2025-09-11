@@ -24,17 +24,7 @@ def setup():
     for i in range(lvl):
         sl[i].pos = g * (i + 1) , 20
 
-def anit():
-    for i in range(len(sl)):
-        if i // 2 == 0:
-            a = animate(sl[i] , duration = 5, x = 500)
-        elif i // 2 != 0:
-            a = animate(sl[i] , duration = 5, x = 250)
-        anjj.append(a)
-        sl[i].y += 3
-
 setup()
-anit()
 
 def draw():
     screen.blit("void", (0,0))
