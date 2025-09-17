@@ -1,7 +1,8 @@
 import pgzrun
 import pygame
 
-m = pygame.mixer.Sound("Uno\eep.wav")
+m = pygame.mixer.Sound("Uno\laserShoot.wav")
+g = pygame.mixer.Sound("Uno\hitHurt.wav")
 
 WIDTH = 700
 HEIGHT = 700
@@ -62,6 +63,7 @@ def update():
     for b in bully:
         for r in setupp:
             if b.colliderect(r):
+                g.play()
                 bully.remove(b)
                 setupp.remove(r)  
                 break
