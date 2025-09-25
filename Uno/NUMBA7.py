@@ -12,8 +12,8 @@ lvl = 0
 
 tim.play()
 
-tims = time.time()
-totl = -2
+tims = 10
+totl = -1
 
 opts = []
 go = Actor("onward!")
@@ -41,29 +41,44 @@ with open("Uno\quqq.txt","r") as file:
         }
         quests.append(quest_dict)
 
+rectan = Rect((75,110),(500,75))
+
 def draw():
     screen.blit("void2",(0,0))
     for i in range(4):
         opts[i].draw()
     go.draw()
     totl = time.time() - (10 + tims)
-    screen.draw.text(f"{(round(totl,0)) + ((round(totl,0)) * 2)}",center = (100,50))
-    screen.draw.text(quests[lvl][0],center = (300,50))
+    screen.draw.text(str(tims),center = (800,350), fontsize = 150)
+    # screen.draw.text(quests[lvl]["question"],center = (300,50))
+    screen.draw.filled_rect(rectan,"grey")
+    screen.draw.textbox(quests[lvl]["question"],rectan,color="white")
 
     for i in range(4):
-        screen.draw.text(quests[lvl][i+1],center = (opts[i].pos))
+        screen.draw.text(quests[lvl]["options"][i],center = (opts[i].pos))
 
 def update():
-    global tims, totl
-    if totl == 0:
+    # if totl == 0:
+    #     timout.play()
+    #     time.sleep(3)
+    #     lvl += 1
+    #     tim.play()
+
+    #     tims = time.time()
+    #     totl = -2
+    pass
+
+def update_time():
+    global tims, lvl
+    if tims > 0:
+        tims -= 1
+    else:
         timout.play()
-        time.sleep(3)
+        time.sleep(4)
         lvl += 1
+        tims = 10
         tim.play()
 
-        tims = time.time()
-        totl = -2
-    
-    pass
+clock.schedule_interval(update_time,0.95)
 
 pgzrun.go()
