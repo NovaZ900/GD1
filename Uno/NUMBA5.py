@@ -1,5 +1,8 @@
 import pgzrun
+import pygame
 import random
+
+
 
 WIDTH = 700
 HEIGHT = 700

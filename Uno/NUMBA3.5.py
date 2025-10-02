@@ -34,7 +34,7 @@ def draw():
         screen.blit("void",(0,0))
         screen.draw.text(f"YOU WIN",center = (350,350),fontsize = (150),color = ("white"))
     totl = time.time() - tim
-    screen.draw.text(f"{round(totl,2)}",center = (100,50))
+    screen.draw.text(f"{round(totl,0)}",center = (100,50))
 
 
 

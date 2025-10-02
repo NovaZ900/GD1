@@ -7,8 +7,12 @@ HEIGHT = 700
 tim = pygame.mixer.Sound("Uno\_tensectimer.wav")
 timout = pygame.mixer.Sound("Uno\_time!.wav")
 end = pygame.mixer.Sound("Uno\_victory2.wav")
+wrong = pygame.mixer.Sound("Uno\wrong.wav")
 
 lvl = 0
+score = 0
+
+j = False
 
 tim.play()
 
@@ -22,6 +26,8 @@ go.pos = 830, 70
 for i in range(4):
     opt = Actor("button1")
     opts.append(opt)
+g = []
+g.append(go)
 
 opts[0].pos = 120, 240
 opts[1].pos = 560, 240
@@ -45,27 +51,25 @@ rectan = Rect((75,110),(500,75))
 
 def draw():
     screen.blit("void2",(0,0))
-    for i in range(4):
-        opts[i].draw()
-    go.draw()
-    totl = time.time() - (10 + tims)
-    screen.draw.text(str(tims),center = (800,350), fontsize = 150)
-    # screen.draw.text(quests[lvl]["question"],center = (300,50))
-    screen.draw.filled_rect(rectan,"grey")
-    screen.draw.textbox(quests[lvl]["question"],rectan,color="white")
+    if j == False:
+        for i in range(4):
+            opts[i].draw()
+        for i in range(1):
+            g[i].draw()
+        totl = time.time() - (10 + tims)
+        screen.draw.text(str(tims),center = (800,350), fontsize = 150)
+        # screen.draw.text(quests[lvl]["question"],center = (300,50))
+        screen.draw.filled_rect(rectan,"grey")
+        screen.draw.textbox(quests[lvl]["question"],rectan,color="white")
 
-    for i in range(4):
-        screen.draw.text(quests[lvl]["options"][i],center = (opts[i].pos))
+        for i in range(4):
+            screen.draw.text(quests[lvl]["options"][i],center = (opts[i].pos))
+    if j == True:
+        screen.draw.text(f"Score:{score}/5",center = (450,350),fontsize = (125),color = ("white"))
 
 def update():
-    # if totl == 0:
-    #     timout.play()
-    #     time.sleep(3)
-    #     lvl += 1
-    #     tim.play()
-
-    #     tims = time.time()
-    #     totl = -2
+    if lvl > 10:
+        j = True
     pass
 
 def update_time():
@@ -78,6 +82,34 @@ def update_time():
         lvl += 1
         tims = 10
         tim.play()
+    if j == True:
+        tims = 10
+        end.play()
+
+def on_mouse_down(pos):
+    global tims, lvl, score
+    cord = pos
+    for i in range(4):
+        if opts[i].collidepoint(pos):
+            if quests[lvl]["options"][i+1] == quests[lvl]["answer"]:
+                tim.stop()
+                if lvl < 10:
+                    lvl += 1
+                score += 1
+                tims = 10
+                if j == False:
+                    tim.play()
+            else:
+                tim.stop()
+                wrong.play()
+                time.sleep(1)
+                lvl += 1
+                tims = 10
+                if j == False:
+                    tim.play()
+
+            
+
 
 clock.schedule_interval(update_time,0.95)
 
