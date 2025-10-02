@@ -65,15 +65,15 @@ def draw():
         for i in range(4):
             screen.draw.text(quests[lvl]["options"][i],center = (opts[i].pos))
     if j == True:
-        screen.draw.text(f"Score:{score}/5",center = (450,350),fontsize = (125),color = ("white"))
+        screen.draw.text(f"Score:{score}/11",center = (450,350),fontsize = (125),color = ("white"))
 
 def update():
-    if lvl > 10:
-        j = True
     pass
 
 def update_time():
     global tims, lvl
+    if j == True:
+        return
     if tims > 0:
         tims -= 1
     else:
@@ -82,33 +82,39 @@ def update_time():
         lvl += 1
         tims = 10
         tim.play()
-    if j == True:
-        tims = 10
-        end.play()
 
 def on_mouse_down(pos):
-    global tims, lvl, score
+    global tims, lvl, score, j
     cord = pos
+    if go.collidepoint(pos):
+        if j == False:
+            tim.stop()
+            tims = 10
+            lvl += 1
+            if lvl > 10:
+                j = True
+            tim.play()
     for i in range(4):
         if opts[i].collidepoint(pos):
-            if quests[lvl]["options"][i+1] == quests[lvl]["answer"]:
+            if i+1 == quests[lvl]["answer"]:
                 tim.stop()
-                if lvl < 10:
-                    lvl += 1
-                score += 1
-                tims = 10
                 if j == False:
+                    lvl += 1
+                    score += 1
+                    tims = 10
                     tim.play()
             else:
                 tim.stop()
                 wrong.play()
                 time.sleep(1)
-                lvl += 1
-                tims = 10
                 if j == False:
+                    lvl += 1
+                    tims = 10
                     tim.play()
-
-            
+    if lvl > 10:
+        j = True
+        tim.stop()
+        end.play()
 
 
 clock.schedule_interval(update_time,0.95)
