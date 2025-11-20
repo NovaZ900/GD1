@@ -58,9 +58,10 @@ def update():
                 if score == 50:
                     win_spawn()
                     if keyboard.k and dots[j].x < dot.x + 60 and dots[j].x > dot.x - 60:
-                        dots.remove(dots[j])
-                        print("You Win.")
-                        exit()
+                        score += 1
+                elif score > 50:   
+                    print("You Win.")
+                    exit()
                 else:
                     score += 1
                     spawn()
@@ -68,7 +69,5 @@ def update():
                 print("You Died.")
                 exit()
     pass
-
-
 
 pgzrun.go()
