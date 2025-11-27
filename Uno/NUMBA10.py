@@ -1,8 +1,8 @@
 import pgzrun
 import random
 
-WIDTH = 350
-HEIGHT = 350
+WIDTH = 700
+HEIGHT = 700
 
 sercll = []
 u = False
@@ -45,6 +45,8 @@ def update():
     if keyboard.j:
         if u == False:
             u = True
+    if keyboard.o:
+        a = 6
     pass
 
 pgzrun.go()
