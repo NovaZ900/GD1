@@ -5,12 +5,13 @@ import time
 WIDTH = 700
 HEIGHT = 700
 
-j = pygame.mixer.Sound("Uno\chezburger.mp3")
+j = pygame.mixer.Sound("Uno\lazerShoot.wav")
 a = pygame.mixer.Sound("Uno\lkok.mp3")
 h = ""
 k = False
 g = []
 p = 0
+z = -1
 l = Actor("op2")
 m = Actor("op")
 n = Actor("op3")
@@ -21,6 +22,8 @@ g.append(n)
 g.append(o)
 
 def mmm():
+    global h
+    h = " "
     j.play()
     time.sleep(1)
     j.stop()
@@ -28,34 +31,41 @@ def mmm():
 
 def draw():
     screen.fill("black")
-    while k == True:
-        g[p-1].draw()
-    while k == False:
-        screen.draw.text(h, center = (350,350), fontsize = 100, color = "red")
+    if k == True:
+        g[z].draw()
+    if k == False:
+        screen.draw.text(h, center = (350,350), fontsize = 60, color = "red")
 
 def update():
-    global h, k
-    while p == 0:
+    global k, h, z
+    if p == 0:
         h = "Leave."
         k = False
-    while p == 2:
+    if p == 2:
         h = "Please leave."
         k = False
-    while p == 4:
+    if p == 4:
         h = "I'M BEGGING YOU, LEAVE."
         k = False
-    while p == 6:
+    if p == 6:
         h = "...It's too late."
         k = False
+    if p == 1:
+        k = True
+    if p == 3:
+        k = True
+    if p == 5:
+        k = True
     if p == 7:
         k = True
         mmm()
     pass
 
 def on_mouse_down():
-    global p
+    global p, z
     a.play()
     p += 1
-
+    if p == 1 or p == 3 or p == 5:
+        z += 1
 
 pgzrun.go()
