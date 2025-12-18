@@ -1,6 +1,10 @@
 import pygame
 import random
 
+circs = []
+
+k = False
+
 class Circle:
     def __init__(self, g, c, colo):
         self.radius = g
@@ -19,6 +23,15 @@ class Circle:
         if (x >= cx - self.radius and x <= cx + self.radius) and (y >= cy - self.radius and y <= cy + self.radius):
             self.radius += 1
             self.cullur()
+
+def mak():
+        # if k == True:
+            r = random.randint(0,255)
+            h = random.randint(0,255)
+            b = random.randint(0,255)
+            circ = Circle(random.randint(1,10), (random.randint(5,695),random.randint(5,695)), (r,h,b))
+            circs.append(circ)
+
 pygame.init()
 
 screen = pygame.display.set_mode((700,700))
@@ -36,6 +49,13 @@ while running:
             running = False
             break
         if event.type == pygame.MOUSEBUTTONDOWN:
-            c1.gro()
-            c2.gro()
+            for i in range(len(circs)):
+                circs[i].draw()
+        if event.type == pygame.MOUSEMOTION:
+            mak()
+        # if event.type == pygame.KSCAN_A:
+        #     if k == False:
+        #         k = True
+        #     elif k == True:
+        #         k = False
     pygame.display.update()
