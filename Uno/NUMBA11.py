@@ -22,7 +22,6 @@ class Circle:
         x, y = pygame.mouse.get_pos()
         if (x >= cx - self.radius and x <= cx + self.radius) and (y >= cy - self.radius and y <= cy + self.radius):
             self.radius += 1
-            self.cullur()
 
 def mak():
         # if k == True:
@@ -50,7 +49,7 @@ while running:
             break
         if event.type == pygame.MOUSEBUTTONDOWN:
             for i in range(len(circs)):
-                circs[i].draw()
+                 circs[i].gro()
         if event.type == pygame.MOUSEMOTION:
             mak()
         # if event.type == pygame.KSCAN_A:
@@ -58,4 +57,6 @@ while running:
         #         k = True
         #     elif k == True:
         #         k = False
+    for i in range(len(circs)):
+                circs[i].draw()
     pygame.display.update()
