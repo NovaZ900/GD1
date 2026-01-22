@@ -9,6 +9,7 @@ bg = pygame.image.load("Uno/images/kfig.jpg")
 bg = pygame.transform.scale(bg,(700,700))
 j = pygame.mixer.Sound("Uno/happy-wheels-victory-made-wihh-Voicemod.mp3")
 running = True
+j.play()
 
 while running:
     screen.blit(bg,(0,0))
@@ -21,8 +22,9 @@ while running:
     text2 = font.render("Burthdae!!!", True, (0,0,0))
     screen.blit(text,(250,200))
     screen.blit(text2,(200,325))
-    j.play()
-    time.sleep(2)
-    text3 = font.render("Have a good year!!")
-
     pygame.display.update()
+    time.sleep(2)
+    text3 = font.render("y e h", True, (0,0,0))
+    screen.blit(text3, (250,380))
+    pygame.display.update()
+    
