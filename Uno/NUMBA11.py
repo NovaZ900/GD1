@@ -35,14 +35,9 @@ pygame.init()
 
 screen = pygame.display.set_mode((700,700))
 
-c1 = Circle(6, (350,350), "green")
-c2 = Circle(7, (125,125), "yellow")
-
 running = True
 while running:
     screen.fill("blue")
-    c1.draw()
-    c2.draw()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
