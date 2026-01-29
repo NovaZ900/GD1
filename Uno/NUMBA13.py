@@ -27,4 +27,12 @@ while running:
     text3 = font.render("y e h", True, (0,0,0))
     screen.blit(text3, (250,380))
     pygame.display.update()
+
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        ih = pygame.mouse.get_pos()
+        pygame.draw.circle(bg, "black", ih, 15, 0)
+    elif event.type == pygame.MOUSEBUTTONUP:
+        aih = pygame.mouse.get_pos()
+        pygame.draw.line(bg, "black", ih, aih, 5)
+        pygame.draw.circle(bg, "black", aih, 15, 0)
     

@@ -30,3 +30,12 @@ while running:
             running = False
             break
     pygame.display.update()
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        ih = pygame.mouse.get_pos()
+        pygame.draw.circle(bg, "black", ih, 15, 0)
+        pygame.display.update()
+    elif event.type == pygame.MOUSEBUTTONUP:
+        aih = pygame.mouse.get_pos()
+        pygame.draw.line(bg, "black", ih, aih, 5)
+        pygame.draw.circle(bg, "black", aih, 15, 0)
+        pygame.display.update()
