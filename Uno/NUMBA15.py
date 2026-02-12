@@ -1,7 +1,9 @@
 import pygame
+from pygame.locals import *
 
 pygame.init()
 bg = pygame.display.set_mode((700,700))
+clock = pygame.time.Clock()
 ih = pygame.image.load("Uno/images/space.png")
 aih = pygame.image.load("Uno/images/rocket.png")
 
@@ -11,8 +13,10 @@ aih_y = 50
 aih_x = 50
 
 keys = [False,False,False,False]
+running = True
 
-while aih_y < 600:
+while running:
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -42,9 +46,11 @@ while aih_y < 600:
         if aih_x > 0:
             aih_x -= 3
     if keys [2]:
-        if aih_y < 536:
+        if aih_y < 315:
             aih_y += 3
     if keys [3]:
-        if aih_x < 536:
+        if aih_x < 315:
             aih_x += 3
+    bg.blit(ih,(0,0))
+    bg.blit(aih,(aih_x,aih_y))
     pygame.display.update()
