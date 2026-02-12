@@ -23,7 +23,7 @@ while aih_y < 600:
             elif event.key == K_a:
                 keys[1]=True
             elif event.key == K_s:
-                keys[2]=Truew
+                keys[2]=True
             elif event.key == K_d:
                 keys[3]=True
         if event.type == pygame.KEYUP:
@@ -37,5 +37,14 @@ while aih_y < 600:
                 keys[3]=False
     if keys [0]:
         if aih_y > 0:
+            aih_y -= 3
+    if keys [1]:
+        if aih_x > 0:
+            aih_x -= 3
+    if keys [2]:
+        if aih_y < 536:
             aih_y += 3
+    if keys [3]:
+        if aih_x < 536:
+            aih_x += 3
     pygame.display.update()

@@ -11,6 +11,7 @@ rocky = pygame.image.load("Uno/images/rocket.png")
 rocky = pygame.transform.scale(rocky,(150,150))
 x = 200
 y = 200
+img = "Uno/images/rocket2.png"
 
 while running:
     screen.blit(bg,(0,0))
