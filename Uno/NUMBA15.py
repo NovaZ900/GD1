@@ -6,6 +6,7 @@ bg = pygame.display.set_mode((700,700))
 clock = pygame.time.Clock()
 ih = pygame.image.load("Uno/images/space.png")
 aih = pygame.image.load("Uno/images/rocket.png")
+aih = pygame.transform.scale(aih,(150,150))
 
 bg.blit(ih,(0,0))
 bg.blit(aih,(50,50))
@@ -46,10 +47,10 @@ while running:
         if aih_x > 0:
             aih_x -= 3
     if keys [2]:
-        if aih_y < 315:
+        if aih_y < 550:
             aih_y += 3
     if keys [3]:
-        if aih_x < 315:
+        if aih_x < 550:
             aih_x += 3
     bg.blit(ih,(0,0))
     bg.blit(aih,(aih_x,aih_y))
