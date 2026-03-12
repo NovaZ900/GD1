@@ -20,6 +20,4 @@ def draw():
 def update():
     pass
 
-
-
 pgzrun.go()

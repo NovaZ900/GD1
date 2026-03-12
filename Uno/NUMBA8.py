@@ -86,7 +86,8 @@ def draw():
         screen.draw.text("TIH",center = (350,350),color = "red", fontsize = 200)
     else:
         screen.draw.line((WIDTH/3,0),(WIDTH/3,HEIGHT),"black")
-        screen.draw.line((2*WIDTH/3,0),(2*WIDTH/3,HEIGHT),"black")
+        screen.draw.line((2*WIDTH/3,0),(2*WIDTH/3,HEIGHT),"black")+
+        
         screen.draw.line((0,HEIGHT/3),(WIDTH,HEIGHT/3),"black")
         screen.draw.line((0,2*HEIGHT/3),(WIDTH,2*HEIGHT/3),"black")
         for i in range(3):

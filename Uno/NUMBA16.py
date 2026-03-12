@@ -4,7 +4,7 @@ pygame.init()
 HEIGHT = 700
 WIDTH = 700
 bg = pygame.display.set_mode((WIDTH,HEIGHT))
-ih = pygame.image.load("Uno\images\VOIDbg.png")
+ih = pygame.image.load("Uno/images/VOIDbg.png")
 
 bg.blit(ih,(0,0))
 
@@ -13,8 +13,8 @@ running = True
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("Uno\images\Tanko.png")
-        self.image = pygame.transform.scale(self.image,(115,70))
+        self.image = pygame.image.load("Uno/images/Tanko.png")
+        self.image = pygame.transform.scale(self.image,(70,168))
         self.rect = self.image.get_rect()
     def update(self,pressed_keys):
         if pressed_keys[pygame.K_a]:
