@@ -79,6 +79,7 @@ def draw_winner(text):
     pygame.time.delay(4000)
 
 def GAME():
+    global boundary
     clock = pygame.time.Clock()
     red_controls = {
         "left": pygame.K_LEFT,
@@ -93,8 +94,8 @@ def GAME():
         "down": pygame.K_s
     }
 
-    RED = Ship(ih, 700, 300, red_controls, (BORDER.right,WIDTH))
-    BLUE = Ship(aih, 100, 300, blue_controls, (0, BORDER.left))
+    RED = Ship(ih, 700, 300, red_controls, (boundary.right,WIDTH))
+    BLUE = Ship(aih, 100, 300, blue_controls, (0, boundary.left))
     all_sprites = pygame.sprite.Group(RED,BLUE)
 running = True
 while running:
