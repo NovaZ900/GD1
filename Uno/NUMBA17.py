@@ -21,7 +21,7 @@ HEALTH = pygame.font.SysFont("Comic Sans", 40)
 WINNER = pygame.font.SysFont("Comic Sans", 100)
 
 ih = pygame.transform.scale(pygame.image.load(os.path.join("images","PlayerShip.png")),(WIDTH, HEIGHT))
-aih = pygame.transform.scale(pygame.image.load(os.path.join("images","EnemyShip.png")),(WIDTH, HEIGHT))
+aih = pygame.transform.scale(pygame.image.load(os.path.join("images","Enemy.png")),(WIDTH, HEIGHT))
 
 class Ship(pygame.sprite.Sprite):
     def __init___(self,image,x,y,controls,boundary):
@@ -53,6 +53,49 @@ class Bullet(pygame.sprite.Sprite):
         super.__init__()
         self.image = pygame.Surface(10,5)
         self.rect = self.image.get_rect(center = (shiprect.centerx,shiprect.centery))
+        self.direction = direction
+    def update(self):
+        self.rect.x += BULLET_VEL * self.direction
+        if self.rect.right < 0 or self.rect.lect > WIDTH:
+            self.kill()
+
+def draw_window(RED,BLUE):
+    bg.blit("Uno/images/space.png",(0,0))
+    pygame.draw.rect(bg, "white", ORDER)
+    RED_health = HEALTH.render(f"HP: {RED.health}", 1, "white")
+    BLUE_health = HEALTH.render(f"HP: {BLUE.health}", 1, "white")
+    bg.blit(RED_health, (WIDTH - RED_health.get_width() - 10, 10))
+    bg.blit(BLUE_health, (10, 10))
+    bg.blit(RED.image,RED.rect)
+    bg.blit(BLUE.image,BLUE.rect)
+    RED.bullet.draw(bg)
+    BLUE.bullet.draw(bg)
+    pygame.display.update()
+
+def draw_winner(text):
+    winner = WINNER.render(text,1, "white")
+    bg.blit(winner,(WIDTH//2 - winner.get_width()//2,HEIGHT//2 - winner.get_height()//2))
+    pygame.display.update()
+    pygame.time.delay(4000)
+
+def GAME():
+    clock = pygame.time.Clock()
+    red_controls = {
+        "left": pygame.K_LEFT,
+        "right": pygame.K_RIGHT,
+        "up": pygame.K_UP,
+        "down": pygame.K_DOWN
+    }
+    blue_controls = {
+        "left": pygame.K_a,
+        "right": pygame.K_d,
+        "up": pygame.K_w,
+        "down": pygame.K_s
+    }
+
+    RED = Ship(ih, 700, 300, red_controls, (BORDER.right,WIDTH))
+    BLUE = Ship(aih, 100, 300, blue_controls, (0, BORDER.left))
+    all_sprites = pygame.sprite.Group(RED,BLUE)
 running = True
 while running:
     for event in pygame.event.get():
